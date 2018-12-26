@@ -1,18 +1,24 @@
 <?php
 
 /**
- * Run in a custom namespace, so the class can be replaced
+ * @package		contao-page-images-bundle
+ * @author		Ruud Walraven <ruud.walraven@gmail.com>
+ * @copyright	Ruud Walraven 2011 - 2018
+ * @license		http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
-namespace PageImages;
 
+
+namespace Srhinow\ContaoPageImagesBundle\Models;
+
+use Contao\Model;
 
 /**
  * Reads and writes pageimages
  * 
  * @author		Ruud Walraven <ruud.walraven@gmail.com>
- * @copyright	Ruud Walraven 2011 - 2012
+ * @copyright	Ruud Walraven 2011 - 2018
  */
-class PageimagesModel extends \Model
+class PageimagesModel extends Model
 {
 
 	/**

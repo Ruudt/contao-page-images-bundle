@@ -1,10 +1,17 @@
 <?php
 
 /**
- * Run in a custom namespace, so the class can be replaced
+ * @package		contao-page-images-bundle
+ * @author		Ruud Walraven <ruud.walraven@gmail.com>
+ * @copyright	Ruud Walraven 2011 - 2018
+ * @license		http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
-namespace PageImages;
 
+namespace Srhinow\ContaoPageImagesBundle\Modules;
+
+
+use Contao\FrontendTemplate;
+use Srhinow\ContaoPageImagesBundle\PageImages\PageImages;
 
 /**
  * Class ModulePageImages
@@ -12,7 +19,7 @@ namespace PageImages;
  * @copyright  Ruud Walraven 2011 - 2014
  * @author     Ruud Walraven <ruud.walraven@gmail.com>
  */
-class ModulePageImages extends \PageImages
+class ModulePageImages extends PageImages
 {
     /**
      * Template
@@ -37,7 +44,7 @@ class ModulePageImages extends \PageImages
 
         if ($this->Template->has_pageimage)
         {
-            $objTemplate = new \FrontendTemplate($this->pageimages_layout);
+            $objTemplate = new FrontendTemplate($this->pageimages_layout);
             $objTemplate->headline = $this->Template->headline;
             $objTemplate->hl = $this->Template->hl;
             $objTemplate->style = $this->Template->style && count($this->Template->style) ? implode(' ', $this->Template->arrStyle) : '';

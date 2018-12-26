@@ -6,13 +6,21 @@
 namespace Srhinow\ContaoPageImagesBundle\PageImages;
 
 
+use Contao\File;
+use Contao\FilesModel;
+use Contao\FrontendTemplate;
+use Contao\Module;
+use Contao\PageModel;
+use Srhinow\ContaoPageImagesBundle\Models\PageimagesModel;
+use Srhinow\ContaoPageImagesBundle\Models\PageimagesPagesModel;
+
 /**
  * Class PageImages
  *
  * @copyright  Ruud Walraven 2013
  * @author     Ruud Walraven <ruud.walraven@gmail.com>
  */
-abstract class PageImages extends \Module
+abstract class PageImages extends Module
 {
     /**
      * Generate the module
@@ -22,7 +30,7 @@ abstract class PageImages extends \Module
     public function generate()
     {
         // Get the image set
-        $this->objSet = \PageimagesModel::findSetById($this->pageimages);
+        $this->objSet = PageimagesModel::findSetById($this->pageimages);
 
         return parent::generate();
     }
@@ -75,7 +83,7 @@ abstract class PageImages extends \Module
      */
     protected function findPageImages($pageId, $inheriting=false)
     {
-        $objPageItem = \PageimagesPagesModel::findParentAndItemsById($pageId, $this->pageimages);
+        $objPageItem = PageimagesPagesModel::findParentAndItemsById($pageId, $this->pageimages);
 
         if ($objPageItem !== null)
         {
@@ -122,7 +130,7 @@ abstract class PageImages extends \Module
         }
         else
         {
-            $objPage = \PageModel::findPublishedById($pageId);
+            $objPage = PageModel::findPublishedById($pageId);
             
             if ($objPage !== null && $objPage->pid)
             {
@@ -172,7 +180,7 @@ abstract class PageImages extends \Module
         }
 
         // Get the file entries from the database
-        $objFiles = \FilesModel::findMultipleByUuids($multiSRC);
+        $objFiles = FilesModel::findMultipleByUuids($multiSRC);
 
         if ($objFiles === null)
         {
@@ -191,7 +199,7 @@ abstract class PageImages extends \Module
             // Single files
             if ($objFiles->type == 'file')
             {
-                $objFile = new \File($objFiles->path);
+                $objFile = new File($objFiles->path);
 
                 if (!$objFile->isGdImage || ($objFile->extension == 'swf'))
                 {
@@ -222,7 +230,7 @@ abstract class PageImages extends \Module
             // Folders
             else
             {
-                $objSubfiles = \FilesModel::findByPid(isset($objFiles->uuid) ? $objFiles->uuid : $objFiles->id);
+                $objSubfiles = FilesModel::findByPid(isset($objFiles->uuid) ? $objFiles->uuid : $objFiles->id);
 
                 if ($objSubfiles === null)
                 {
@@ -237,7 +245,7 @@ abstract class PageImages extends \Module
                         continue;
                     }
 
-                    $objFile = new \File($objSubfiles->path);
+                    $objFile = new File($objSubfiles->path);
 
                     if (!$objFile->isGdImage || ($objFile->extension == 'swf'))
                     {
@@ -298,13 +306,13 @@ abstract class PageImages extends \Module
     {
         if(substr($arrItem['singleSRC'], -3) == 'swf')
         {
-            $objTemplate = new \FrontendTemplate('pageimagesflash');
+            $objTemplate = new FrontendTemplate('pageimagesflash');
             $this->addImageToTemplate($objTemplate, $arrItem);
             $this->setFlashSize($objTemplate, $arrItem);
         }
         else
         {
-            $objTemplate = new \FrontendTemplate('pageimagesimage');
+            $objTemplate = new FrontendTemplate('pageimagesimage');
             $this->addImageToTemplate($objTemplate, $arrItem);
         }
 

@@ -1,10 +1,10 @@
 <?php
-
 /**
- * @copyright  Ruud Walraven 2011
- * @author     Ruud Walraven <ruud.walraven@gmail.com>
+ * @package		contao-page-images-bundle
+ * @author		Ruud Walraven <ruud.walraven@gmail.com>
+ * @copyright	Ruud Walraven 2011 - 2018
+ * @license		http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
-
 
 /**
  * Add a palette to tl_module
@@ -49,7 +49,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['pageimages_type'] = array
 /**
  * Provide miscellaneous methods that are used by the data configuration array.
  */
-class tl_module_pageimages extends Backend {
+class tl_module_pageimages extends Contao\Backend {
+    
 	/**
 	 * Return pageimages templates as array
 	 */

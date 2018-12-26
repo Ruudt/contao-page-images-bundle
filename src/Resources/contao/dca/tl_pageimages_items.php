@@ -1,10 +1,10 @@
 <?php
-
 /**
+ * @package		contao-page-images-bundle
  * @author		Ruud Walraven <ruud.walraven@gmail.com>
- * @copyright	Ruud Walraven 2011 - 2014
+ * @copyright	Ruud Walraven 2011 - 2018
+ * @license		http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
-
 
 /**
  * Table tl_pageimages_items
@@ -149,7 +149,7 @@ $GLOBALS['TL_DCA']['tl_pageimages_items'] = array
 /**
  * Provide miscellaneous methods that are used by the data configuration array.
  */
-class tl_pageimages_items extends Backend {
+class tl_pageimages_items extends Contao\Backend {
     /**
      * label_callback that shows the pagenames the setting applies to
      */
