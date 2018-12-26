@@ -3,7 +3,7 @@
   "description": "Set one or more images central per page in Contao CMS. This is a Contao4 -Bundle-Fork from 'Ruudt/contao-page_images'",
   "keywords": ["contao", "pageimage", "image", "backend modul"],
   "type": "contao-module",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0-or-later",
   "authors":[
     {
       "name":"Ruud Walraven",
