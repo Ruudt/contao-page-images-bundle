@@ -1,4 +1,4 @@
-Contao Extension "page_images"
+Contao Extension "contao-page-images-bundle"
 =============================
 
 Set one or more images per page.
