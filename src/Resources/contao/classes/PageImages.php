@@ -142,22 +142,20 @@ abstract class PageImages extends Module
         // Get the default image if no specific has been found
         if ($tmpPageImage = $this->getImages($this->objSet->multiSRC))
         {
-            $i = 0;
-            
+            $pageImages = array();
+
             foreach ($tmpPageImage as $key => $pageImage)
             {
-                $tmpPageImage['multiSRC']      = $this->objSet->multiSRC; // Will be removed in future versions (deprecated)
-                $tmpPageImage['uuid']          = $tmpPageImage['uuid'] ?: $this->objSet->multiSRC[$key];
-                $tmpPageImage['pageId']        = 0;
-                $tmpPageImage['noInheritance'] = 0;
-                $tmpPageImage['alt']           = $this->objSet->alt ? $this->objSet->alt : $tmpPageImage['alt'];
-                $tmpPageImage['data']          = $this->objSet->row(); // Thanks to JSk
-
-                $pageImages[$i] = $tmpPageImage;
-
-                $i++;
+                $tmpPageImages[$key] = $pageImage;
+                $tmpPageImages[$key]['multiSRC']      = $this->objSet->multiSRC; // Will be removed in future versions (deprecated)
+                $tmpPageImages[$key]['uuid']          = $tmpPageImage['uuid'] ?: $this->objSet->multiSRC[$key];
+                $tmpPageImages[$key]['pageId']        = 0;
+                $tmpPageImages[$key]['noInheritance'] = 0;
+                $tmpPageImages[$key]['alt']           = $this->objSet->alt ? $this->objSet->alt : $tmpPageImage[$key]['alt'];
+                $tmpPageImages[$key]['data']          = $this->objSet->row(); // Thanks to JSk
             }
 
+            $pageImages = array_merge_recursive($pageImages, $tmpPageImages);
         }
 
         return $pageImages;
